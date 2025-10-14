@@ -1,0 +1,39 @@
+﻿@model Actor
+
+@{
+    ViewData["Title"] = "Actor Details";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4 rounded-3 border-0">
+                <h3 class="text-center mb-4 text-primary">Details for @Model.FullName</h3>
+
+                <!-- Profile Picture -->
+                <div class="text-center mb-4">
+                    <img src="@Model.ProfilePictureURL" class="border border-secondary rounded-circle shadow"
+                         style="width: 150px; height: 150px; object-fit: cover;" alt="@Model.FullName" />
+                </div>
+
+                <!-- Full Name -->
+                <div class="mb-3">
+                    <strong>Full Name:</strong>
+                    <p>@Model.FullName</p>
+                </div>
+
+                <!-- Biography -->
+                <div>
+                    <strong>Biography:</strong>
+                    <p>@Model.Bio</p>
+                </div>
+
+                <!-- Buttons -->
+                <div class="text-center mt-4">
+                    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Back to List</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

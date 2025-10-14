@@ -1,0 +1,179 @@
+@{
+    ViewData["Title"] = "Order Completed";
+}
+
+<style>
+    .success-container {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        padding: 3rem 0;
+    }
+    
+    .success-card {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        text-align: center;
+        border: none;
+    }
+    
+    .success-icon {
+        font-size: 4rem;
+        color: #28a745;
+        margin-bottom: 1.5rem;
+        animation: bounce 2s infinite;
+    }
+    
+    .success-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    }
+    
+    .payment-message {
+        font-size: 1.3rem;
+        color: #28a745;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(40, 167, 69, 0.1);
+        border-radius: 12px;
+        border-left: 4px solid #28a745;
+    }
+    
+    .order-details {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin: 2rem 0;
+    }
+    
+    .amount-display {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #28a745;
+    }
+    
+    .action-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .btn-custom {
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-width: 180px;
+        justify-content: center;
+    }
+    
+    .btn-primary-custom {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+    }
+    
+    .btn-primary-custom:hover {
+        background: linear-gradient(45deg, #5a67d8, #6b46c1);
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    .btn-outline-custom {
+        background: transparent;
+        color: #667eea;
+        border: 2px solid #667eea;
+    }
+    
+    .btn-outline-custom:hover {
+        background: #667eea;
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    @@keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-10px);
+        }
+        60% {
+            transform: translateY(-5px);
+        }
+    }
+</style>
+
+<div class="success-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="success-card">
+                    <div class="success-icon">
+                        <i class="bi bi-check-circle-fill"></i>
+                    </div>
+                    
+                    <h1 class="success-title">🎉 Payment Done!</h1>
+                    
+                    @if (TempData["PaymentSuccess"] != null)
+                    {
+                        <div class="payment-message">
+                            <i class="bi bi-credit-card-2-front me-2"></i>
+                            @TempData["PaymentSuccess"]
+                        </div>
+                    }
+                    
+                    @if (TempData["OrderTotal"] != null)
+                    {
+                        <div class="order-details">
+                            <h5><i class="bi bi-receipt me-2"></i>Order Summary</h5>
+                            <p class="mb-2">Total Amount Paid:</p>
+                            <div class="amount-display">@(((double)TempData["OrderTotal"]).ToString("C", new System.Globalization.CultureInfo("en-IN")))</div>
+                        </div>
+                    }
+                    
+                    <div class="alert alert-info" role="alert">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>Access Period:</strong> You now have 7 days access to your purchased movies.
+                        Check your <strong>My Movies</strong> section to start watching!
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <a class="btn-custom btn-primary-custom" asp-controller="Movies" asp-action="MyMovies">
+                            <i class="bi bi-play-circle"></i>
+                            My Movies
+                        </a>
+                        
+                        <a class="btn-custom btn-outline-custom" asp-controller="Movies" asp-action="Index">
+                            <i class="bi bi-film"></i>
+                            Browse More
+                        </a>
+                        
+                        <a class="btn-custom btn-outline-custom" asp-controller="Orders" asp-action="Index">
+                            <i class="bi bi-list-ul"></i>
+                            Order History
+                        </a>
+                    </div>
+                    
+                    <hr class="my-4">
+                    <p class="text-muted">
+                        <i class="bi bi-heart-fill text-danger me-1"></i>
+                        Thank you for choosing CinePortal!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

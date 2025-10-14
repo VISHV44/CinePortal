@@ -1,0 +1,68 @@
+@model Actor
+
+@{
+    ViewData["Title"] = "Edit Actor";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4 rounded-3 border-0">
+                <h3 class="text-center mb-4 text-primary">Edit Actor</h3>
+
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <!-- Image Preview -->
+                    <div class="text-center mb-4">
+                        <img id="ProfilePicturePreview" src="@Model.ProfilePictureURL" class="border border-secondary rounded-circle shadow"
+                             style="width: 150px; height: 150px; object-fit: cover;" alt="Profile Picture Preview" />
+                    </div>
+
+                    <!-- Profile Picture URL -->
+                    <div class="form-group mb-4">
+                        <label asp-for="ProfilePictureURL" class="form-label fw-semibold">Profile Picture URL</label>
+                        <input asp-for="ProfilePictureURL" class="form-control" placeholder="Paste image URL" required />
+                        <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+                        <small class="form-text text-muted">Paste a valid image link (e.g., from Unsplash or Imgur).</small>
+                    </div>
+
+                    <!-- Full Name Input -->
+                    <div class="form-group mb-3">
+                        <label asp-for="FullName" class="form-label fw-bold">Full Name</label>
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Biography Input -->
+                    <div class="form-group mb-4">
+                        <label asp-for="Bio" class="form-label fw-bold">Biography</label>
+                        <textarea asp-for="Bio" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Bio" class="text-danger"></span>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Back to List</a>
+                        <button type="submit" class="btn btn-primary rounded-pill px-4">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('ProfilePicture').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    document.getElementById('ProfilePicturePreview').src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}

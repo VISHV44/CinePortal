@@ -1,0 +1,53 @@
+﻿@model Actor
+
+@{
+    ViewData["Title"] = "Delete Actor";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+            <div class="card shadow-lg border-0 rounded-4 p-4 bg-light">
+                <h3 class="text-center text-danger fw-bold mb-4">
+                    <i class="bi bi-exclamation-triangle me-2"></i>Confirm Deletion
+                </h3>
+
+                <div class="text-center mb-4">
+                    <img id="ProfilePicturePreview"
+                         src="@Model.ProfilePictureURL"
+                         alt="@Model.FullName"
+                         class="rounded-circle shadow border border-danger"
+                         style="width: 150px; height: 150px; object-fit: cover;" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Profile Picture URL</label>
+                    <input class="form-control" value="@Model.ProfilePictureURL" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Full Name</label>
+                    <input class="form-control" value="@Model.FullName" readonly />
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Biography</label>
+                    <textarea class="form-control" rows="3" readonly>@Model.Bio</textarea>
+                </div>
+
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">
+                            <i class="bi bi-arrow-left"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-danger rounded-pill px-4">
+                            <i class="bi bi-trash"></i> Confirm Delete
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
