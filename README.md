@@ -1,5 +1,8 @@
 # 🎬 CinePortal - Movie Rent Management System
 
+##Demo Video Link
+https://drive.google.com/file/d/1laCWvpiR7H0f_CJ-5AWj-5K6uwX0nYbk/view?usp=sharing
+
 ## 📋 Project Overview
 CinePortal is a comprehensive web-based Movie Rent Management System that provides an intuitive platform for movie enthusiasts to browse, rent, and watch movies online. The system features a dual-interface architecture catering to both regular users and administrators, with robust features for movie management, user management, and rental processing.
 
